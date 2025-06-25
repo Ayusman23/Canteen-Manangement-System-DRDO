@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealSync | Login</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f8f9fa;
+            height: 100vh;
+            overflow: hidden;
+            opacity: 1;
+            transition: opacity 0.4s ease-out;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Page transition animations */
+        body.page-transitioning {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        body.page-transition-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInBody 0.5s forwards;
+        }
+        
+        @keyframes fadeInBody {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.77,0,0.175,1);
+        }
+        
+        .login-section, .image-section {
+            transition: transform 0.6s cubic-bezier(0.77,0,0.175,1);
+        }
+        
+        .container.register-active .login-section {
+            transform: translateX(100%);
+        }
+        
+        .container.register-active .image-section {
+            transform: translateX(-100%);
+        }
+        
+        .container:not(.register-active) .login-section {
+            transform: translateX(0);
+        }
+        
+        .container:not(.register-active) .image-section {
+            transform: translateX(0);
+        }
+        
+        .login-section {
+            width: 50%;
+            min-width: 50%;
+            padding: 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 0.6s ease-out;
+            flex-shrink: 0;
+            overflow-y: auto;
+            position: relative;
+            z-index: 5;
+            background-color: #f8f9fa;
+        }
+        
+        .form-container {
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .image-section {
+            width: 50%;
+            min-width: 50%;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: #262626;
+        }
+        
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        
+        .image-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 1;
+        }
+        
+        .promotional-overlay {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 80%;
+            color: white;
+            z-index: 2;
+        }
+        
+        .promotional-overlay h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .promotional-overlay p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .logo {
+            font-size: 29px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .up {
+            font-size: 12px;
+            color: #333333ad;
+            margin-top: -8px;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+            vertical-align: middle;
+            filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.1));
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .welcome-back {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: #65676b;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        
+        .social-login {
+            margin-bottom: 20px;
+        }
+        
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            color: #333;
+            border: 1px solid #dddfe2;
+            border-radius: 5px;
+            padding: 10px 15px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .google-btn svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #dddfe2;
+        }
+        
+        .divider span {
+            padding: 0 10px;
+            color: #65676b;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #444;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 5px;
+            font-size: 15px;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #0068d7;
+            box-shadow: 0 0 0 2px rgba(0, 104, 215, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        
+        .forgot-password a {
+            color: #0068d7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .login-btn {
+            background-color: #0068d7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background-color: #0055b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 104, 215, 0.15);
+        }
+        
+        .register-prompt {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 14px;
+            color: #65676b;
+        }
+        
+        .register-prompt a {
+            color: #0068d7;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .register-prompt a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #0068d7;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        
+        .register-prompt a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .error-message {
+            color: #f02849;
+            margin-top: 5px;
+            font-size: 14px;
+            text-align: left;
+            display: none;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .login-section {
+                width: 100%;
+                max-width: 100%;
+                padding: 2rem;
+                order: 2;
+            }
+            
+            .image-section {
+                width: 100%;
+                height: 30vh;
+                order: 1;
+            }
+        }
+        
+        /* Page transition animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Button transition effects */
+        .login-btn, .google-btn, .register-prompt a {
+            transition: all 0.3s ease;
+        }
+        
+        .google-btn:hover {
+            background-color: #f8f8f8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Shake animation for error */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .switcher {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .switch-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 10px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            margin: 0 2px;
+            transition: background 0.3s, color 0.3s;
+            color: #333;
+        }
+        .switch-btn.active {
+            background: #0068d7;
+            color: #fff;
+        }
+        .switch-content {
+            position: relative;
+            min-height: 180px;
+        }
+        .switch-form {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(30px);
+            z-index: 0;
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .switch-form.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="form-container">
+                <div class="logo">
+                    <video src="./images/Untitled design.mp4" alt="RealSync Logo" class="logo-img" autoplay loop muted playsinline></video>
+                    <div class="txt">
+                        <div class="low">DRDO</div>
+                        <div class="up">Canteen services</div>
+                    </div>
+                </div>
+                <div class="con">
+                    <div class="switcher">
+                        <button class="switch-btn active" id="show-login">Login</button>
+                        <button class="switch-btn" id="show-register">Register</button>
+                    </div>
+                    <div class="switch-content">
+                        <form id="emp-login-form" class="switch-form">
+                            <div class="form-group">
+                                <label for="empid-login">Emp ID</label>
+                                <input type="text" id="empid-login" class="form-control" placeholder="Enter your Emp ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass-login">Password</label>
+                                <input type="password" id="pass-login" class="form-control" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="login-btn">Login</button>
+                        </form>
+                        <form id="emp-register-form" class="switch-form">
+                            <div class="form-group">
+                                <label for="empid-register">Emp ID</label>
+                                <input type="text" id="empid-register" class="form-control" placeholder="Enter your Emp ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name-register">Name</label>
+                                <input type="text" id="name-register" class="form-control" placeholder="Enter your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass-register">Password</label>
+                                <input type="password" id="pass-register" class="form-control" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="login-btn">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="image-section">
+            <img src="./images/drdo.jpg" alt="RealSync">
+            <div class="promotional-overlay">
+                <h2>Register and get</h2>
+                <p>Tasty meals and snacks you'll love—at prices you'll love even more!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded, checking login status');
+            if (sessionStorage.getItem('isLoggedIn')) {
+                console.log('User already logged in, redirecting to index.html');
+                window.location.href = 'index.html';
+            } else {
+                console.log('User not logged in, showing login form');
+                document.body.classList.add('page-loaded');
+            }
+            
+            // Add page transition for sign up link
+            const signUpLink = document.querySelector('.register-prompt a');
+            if (signUpLink) {
+                signUpLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    document.body.classList.add('page-transitioning');
+                    setTimeout(() => {
+                        sessionStorage.setItem('pageTransition', 'true');
+                        window.location.href = href;
+                    }, 400);
+                });
+            }
+            
+            // Check if we're coming from register page with transition
+            if (sessionStorage.getItem('pageTransition')) {
+                sessionStorage.removeItem('pageTransition');
+                document.body.classList.add('page-transition-in');
+                
+                setTimeout(() => {
+                    document.body.classList.remove('page-transition-in');
+                }, 500);
+            }
+
+            // --- ADDED: Switcher logic for login/register forms ---
+            const loginBtn = document.getElementById('show-login');
+            const registerBtn = document.getElementById('show-register');
+            const loginForm = document.getElementById('emp-login-form');
+            const registerForm = document.getElementById('emp-register-form');
+
+            function showLogin() {
+                loginBtn.classList.add('active');
+                registerBtn.classList.remove('active');
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+            }
+
+            function showRegister() {
+                registerBtn.classList.add('active');
+                loginBtn.classList.remove('active');
+                registerForm.classList.add('active');
+                loginForm.classList.remove('active');
+            }
+
+            loginBtn.addEventListener('click', showLogin);
+            registerBtn.addEventListener('click', showRegister);
+
+            // Show login form by default
+            showLogin();
+
+            // Handle login form submission
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const empId = document.getElementById('empid-login').value;
+                const password = document.getElementById('pass-login').value;
+
+                try {
+                    const response = await fetch('https://localhost:7001/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ EmpId: empId, Password: password })
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        sessionStorage.setItem('isLoggedIn', 'true');
+                        sessionStorage.setItem('empId', empId);
+                        window.location.href = 'index.html';
+                    } else {
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred during login');
+                }
+            });
+
+            // Handle register form submission
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const empId = document.getElementById('empid-register').value;
+                const name = document.getElementById('name-register').value;
+                const password = document.getElementById('pass-register').value;
+
+                try {
+                    const response = await fetch('https://localhost:7001/api/auth/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ EmpId: empId, Name: name, Password: password })
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        alert('Registration successful! Please login.');
+                        showLogin();
+                    } else {
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred during registration');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

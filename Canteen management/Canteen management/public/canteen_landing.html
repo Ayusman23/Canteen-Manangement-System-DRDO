@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITR WET CANTEEN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #e0e7ff;
+            --white: #fff;
+            --gray: #f3f4f6;
+            --text-dark: #1e293b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+        }
+        .container {
+            position: relative;
+            display: flex;
+            min-height: 100vh;
+        }
+        .left {
+            flex: 1;
+            background: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 3rem 0;
+            flex-direction: column;
+        }
+        .food-img-wrapper {
+            width: 370px;
+            height: 370px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 6px solid var(--white);
+            border-radius: 2.5rem;
+            background: #fff;
+        }
+        .food-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2.5rem;
+            box-shadow: 0 8px 32px rgba(37,99,235,0.18), 0 2px 8px rgba(0,0,0,0.10);
+            border: none;
+            background: #fff;
+        }
+        .logo-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+            margin-left: 30px;
+        }
+        .logo-badge video {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+        }
+        .right {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 0 5vw;
+            background: var(--white);
+            position: relative;
+
+        }
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 0 1rem 0;
+            position: relative;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            height: 4px;
+            width: 100%;
+            background: var(--primary-blue);
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+        .search-box {
+            background: var(--gray);
+            border-radius: 2rem;
+            padding: 0.5rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 10px;
+        }
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 1rem;
+        }
+        .hero {
+            margin-top: 0rem;
+        }
+        .hero .open {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        .hero .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            background: var(--light-blue);
+            display: inline-block;
+            padding: 0.2em 0.7em;
+            border-radius: 0.5em;
+            margin-bottom: 0.3em;
+        }
+        .hero .main-title span {
+            color: var(--dark-blue);
+            background: var(--white);
+            padding: 0.2em 0.7em;
+            border-radius: 0.5em;
+            margin-left: 0.3em;
+        }
+        .hero .address {
+            margin: 1.2rem 0 2rem 0;
+            font-size: 1.1rem;
+            color: #334155;
+            font-weight: 500;
+        }
+        .hero2 {
+            margin-top: -110px;
+        }
+        .services {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .service-btn {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border: none;
+            border-radius: 0.6rem;
+            padding: 0.6rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .service-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        .desc {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 2.2rem;
+            max-width: 500px;
+        }
+        .learn-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 2rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.10);
+            transition: background 0.2s;
+        }
+        .learn-btn:hover {
+            background: var(--dark-blue);
+        }
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                min-height: unset;
+            }
+            .left, .right {
+                width: 100%;
+                min-height: 40vh;
+                padding: 2rem 0;
+            }
+            .right {
+                padding: 0 2vw;
+            }
+            nav {
+                justify-content: space-between;
+                padding: 1rem 0;
+                flex-wrap: wrap;
+            }
+            .hero {
+                margin-top: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0;
+            }
+            .hero .main-title {
+                font-size: 2rem;
+                padding: 0.25em 0.7em;
+                text-align: center;
+            }
+            .logo-badge {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.8rem;
+                top: 1rem;
+                left: 1rem;
+                margin-left: 0;
+            }
+            .food-img-wrapper {
+                width: 90vw;
+                height: 45vw;
+                max-width: 95vw;
+                min-width: 120px;
+                min-height: 120px;
+                max-height: 250px;
+                margin-bottom: 1.2rem;
+                border: 4px solid var(--white);
+                border-radius: 1.2rem;
+                background: #fff;
+            }
+            .food-img {
+                width: 90vw;
+                max-width: 95vw;
+                height: 45vw;
+                min-width: 0;
+                min-height: 120px;
+                max-height: 250px;
+                border-radius: 1.2rem;
+                display: block;
+                margin: 0 auto 1.5rem auto;
+                box-shadow: 0 8px 32px rgba(37,99,235,0.18), 0 2px 8px rgba(0,0,0,0.10);
+                border: none;
+            }
+            .services {
+                flex-direction: row;
+                gap: 0.7rem;
+                align-items: center;
+                margin-bottom: 1.2rem;
+            }
+            .service-btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 0.8rem;
+                padding: 0.7rem 1rem;
+                border-radius: 2rem;
+                margin-bottom: 0.5rem;
+                box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+            }
+            .desc {
+                font-size: 1.1rem;
+                max-width: 95vw;
+                text-align: center;
+                margin: 0 auto 1.5rem auto;
+            }
+            .learn-btn {
+                width: 100%;
+                font-size: 1rem;
+                padding: 0.8rem 0;
+                border-radius: 2rem;
+                margin-bottom: 1.5rem;
+                box-shadow: 0 4px 16px rgba(37,99,235,0.10);
+            }
+            nav {
+                flex-direction: row;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 80vw;
+                max-width: 350px;
+                background: var(--white);
+                box-shadow: 2px 0 24px rgba(37,99,235,0.10);
+                z-index: 2001;
+                padding: 2.5rem 1.5rem 1rem 1.5rem;
+                gap: 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.35s cubic-bezier(0.77,0.2,0.05,1.0);
+                opacity: 1;
+            }
+            .nav-links.open {
+                transform: translateX(0);
+            }
+            .hamburger {
+                display: flex !important;
+            }
+            .search-box {
+                width: 240px;
+                padding: 0.4rem 0.7rem;
+                margin-top: 0px;
+            }
+            .search-box input {
+                font-size: 0.95rem;
+            }
+            .bg-leaf, .bg-flower {
+                display: none;
+            }
+            .hero {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 1.5rem;
+            }
+            .address {
+                text-align: center;
+                font-size: 1.05rem;
+                margin-bottom: 1.2rem;
+            }
+            .top-header-row {
+                display: flex;
+                align-items: center;
+                gap: 0.7rem;
+                margin-bottom: 2rem;
+                position: relative;
+                z-index: 1100;
+                width: 100%;
+                justify-content: flex-start;
+                background: transparent;
+            }
+            .hamburger {
+                display: flex !important;
+                position: static;
+                margin-left: 0.5rem;
+            }
+            .logo-badge {
+                position: static;
+                margin-left: 0;
+            }
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(30, 41, 59, 0.2);
+                backdrop-filter: blur(6px);
+                z-index: 2000;
+                opacity: 0;
+                transition: opacity 0.35s cubic-bezier(0.77,0.2,0.05,1.0);
+            }
+            .menu-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+
+        }
+        .bg-leaf, .bg-flower {
+            position: absolute;
+            z-index: 1;
+            opacity: 1;
+            pointer-events: none;
+        }
+        .leaf-top-left {
+            top: 0;
+            left: 0;
+            width: 120px;
+            transform: rotate(-15deg);
+        }
+        .leaf-bottom-left {
+            bottom: 30px;
+            left: 40px;
+            width: 90px;
+            transform: rotate(25deg);
+        }
+        .flower-bottom-right {
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            transform: rotate(-10deg);
+        }
+
+        #leaf2 {
+            width: 180px;
+            transform: rotate(0deg);
+            bottom: 0px;
+            left: 0px;
+        }
+
+        #leaf1 {
+            width: 80px;
+            top: 5px;
+            left: 28px;
+        }
+
+        .bg-flower {
+            right: 10px;
+            bottom: 10px;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30, 41, 59, 0.25);
+            backdrop-filter: blur(7px);
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 40px rgba(37,99,235,0.18), 0 2px 8px rgba(0,0,0,0.10);
+            z-index: 4000;
+            min-width: 320px;
+            max-width: 95vw;
+            width: 400px;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .booking-modal.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .modal-content {
+            padding: 2.2rem 2rem 2rem 2rem;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-modal:hover {
+            color: var(--dark-blue);
+        }
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+        .booking-form label {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.2rem;
+        }
+        .booking-form input {
+            padding: 0.7rem 1rem;
+            border-radius: 0.7rem;
+            border: 1px solid var(--light-blue);
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .booking-form input:focus {
+            border: 1.5px solid var(--primary-blue);
+        }
+        .booking-form select {
+            padding: 0.7rem 1rem;
+            border-radius: 0.7rem;
+            border: 1px solid var(--light-blue);
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .booking-form select:focus {
+            border: 1.5px solid var(--primary-blue);
+        }
+        .submit-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 2rem;
+            padding: 0.6rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+            transition: background 0.2s;
+        }
+        .submit-btn:hover {
+            background: var(--dark-blue);
+        }
+        @media (max-width: 600px) {
+            .booking-modal {
+                min-width: 90vw;
+                width: 95vw;
+                padding: 0;
+            }
+            .modal-content {
+                padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+            }
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        body.modal-open .container {
+            filter: blur(5px) grayscale(0.1);
+            pointer-events: none;
+            user-select: none;
+        }
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            transition: all 0.2s;
+        }
+        .profile-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        .profile-btn svg {
+            transition: stroke 0.2s;
+        }
+        .profile-btn:hover svg {
+            stroke: var(--white);
+        }
+        .order-success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30, 41, 59, 0.25);
+            backdrop-filter: blur(7px);
+            z-index: 5000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .order-success-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .order-success-content {
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 40px rgba(37,99,235,0.18), 0 2px 8px rgba(0,0,0,0.10);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+            min-width: 320px;
+            max-width: 95vw;
+            width: 350px;
+            position: relative;
+        }
+        .success-icon {
+            margin-bottom: 1.2rem;
+        }
+        .success-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 0.7rem;
+        }
+        .token-label {
+            font-size: 1.1rem;
+            color: #2563eb;
+            margin-bottom: 0.3rem;
+        }
+        .token-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #1e40af;
+            margin-bottom: 1.2rem;
+            letter-spacing: 2px;
+        }
+        .close-success-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 2rem;
+            padding: 0.7rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+            transition: background 0.2s;
+        }
+        .close-success-btn:hover {
+            background: var(--dark-blue);
+        }
+        @media (max-width: 600px) {
+            .order-success-content {
+                min-width: 90vw;
+                width: 95vw;
+                padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+            }
+        }
+        /* Full Menu Modal Custom Styles */
+        .full-menu-modal-content {
+            max-height: 85vh;
+            overflow: auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            min-width: 320px;
+            max-width: 900px;
+            width: 90vw;
+            box-sizing: border-box;
+        }
+        @media (max-width: 700px) {
+            .full-menu-modal-content {
+                width: 98vw;
+                min-width: unset;
+                padding: 1rem 0.3rem 1rem 0.3rem;
+            }
+        }
+        .full-menu-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+        .full-menu-table {
+            width: 100%;
+            min-width: 700px;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #fff;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        }
+        .full-menu-table th, .full-menu-table td {
+            padding: 14px 18px;
+            text-align: center;
+        }
+        .full-menu-table th {
+            background: var(--primary-blue);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .full-menu-table tr:nth-child(even) {
+            background: #f3f4f6;
+        }
+        .full-menu-table tr:nth-child(odd) {
+            background: #fff;
+        }
+        .full-menu-table td {
+            font-size: 1rem;
+            color: #1e293b;
+        }
+        .full-menu-table th:first-child, .full-menu-table td:first-child {
+            border-top-left-radius: 0.7rem;
+        }
+        .full-menu-table th:last-child, .full-menu-table td:last-child {
+            border-top-right-radius: 0.7rem;
+        }
+        .booking-modal#full-menu-modal {
+            max-width: 900px;
+            width: 90vw;
+            min-width: 320px;
+            box-sizing: border-box;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        @media (max-width: 700px) {
+            .booking-modal#full-menu-modal {
+                width: 98vw;
+                min-width: unset;
+                max-width: 98vw;
+            }
+        }
+        .full-menu-modal-content,
+        .full-menu-table-wrapper {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE 10+ */
+        }
+        .full-menu-modal-content::-webkit-scrollbar,
+        .full-menu-table-wrapper::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu-overlay" id="menu-overlay"></div>
+        
+        <img src="./images/leaf.png" class="bg-leaf leaf-top-left" alt="Leaf" id="leaf1"/>
+        <img src="./images/leaf2.png" class="bg-leaf leaf-bottom-left" alt="Leaf" id="leaf2"/>
+        <img src="https://img.icons8.com/ios-filled/100/8B5C2D/flower.png" class="bg-flower flower-bottom-right" alt="Flower" />
+        
+        <div class="left">
+            <div class="top-header-row">
+                <div class="hamburger" id="hamburger-menu" style="display:none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="logo-badge">
+                    <video src="./images/Untitled design.mp4" alt="RealSync Logo" class="logo-img" autoplay loop muted playsinline></video>
+                    DRDO
+                </div>
+            </div>
+            <div class="food-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Indian Food" class="food-img">
+            </div>
+            <div class="search-box mobile-search" id="mobile-search-box">
+                <input type="text" placeholder="Search">
+                <svg width="18" height="18" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+        </div>
+        <div class="right">
+            <nav>
+                <div class="nav-links" id="nav-links">
+                    <a href="#">Menu</a>
+                    <a href="#">Contect us</a>
+                    <a href="#" class="profile-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+            <div class="hero">
+                <div class="open" style="display: flex; align-items: center; gap: 0.5rem;">
+                    We are open booking from 9:00 AM to 10:00 AM
+                    <button id="edit-open-btn" style="background: none; border: none; padding: 2px 6px; margin-left: 8px; cursor: pointer; border-radius: 4px; transition: background 0.2s; display: flex; align-items: center;" title="Edit">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14.7 3.3a1 1 0 0 1 1.4 1.4l-9.4 9.4-2 0.6 0.6-2 9.4-9.4z"/><path d="M16 7v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7"/></svg>
+                    </button>
+                </div>
+                <div class="main-title">ITR <span>Wet Canteen </span></div>
+            </div>
+                <!-- <div class="address">C. de Núñez de Arce, 15, 28012 Madrid, Spain</div> -->
+            <div class="hero2">
+                <div class="services">
+                    <button class="service-btn">📋 Normal Menu</button>
+                    <button class="service-btn">🌟 Special Menu</button>
+                    <button class="service-btn">🍛 Special Items</button>
+                </div>
+                <div class="desc">
+                    After booking your lunch here, you'll receive a token number. Please present this token-number at the Wet Canteen counter when making your payment.
+                </div>
+                <button class="learn-btn" id="book-now-btn">BOOK NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="menu-modal-overlay"></div>
+    <div class="booking-modal" id="menu-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-menu-modal">&times;</button>
+            <h2 id="menu-modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+                <span>Menu Info</span>
+                <button id="edit-menu-btn" style="background: none; border: none; padding: 2px 6px; cursor: pointer; border-radius: 4px; transition: background 0.2s; display: flex; align-items: center;" title="Edit">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14.7 3.3a1 1 0 0 1 1.4 1.4l-9.4 9.4-2 0.6 0.6-2 9.4-9.4z"/><path d="M16 7v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7"/></svg>
+                </button>
+            </h2>
+            <div id="menu-modal-body"></div>
+            <form id="edit-menu-form" style="display:none; margin-top:1rem; flex-direction:column; gap:0.5rem;">
+                <div id="edit-fields"></div>
+                <button type="submit" style="background:#2563eb; color:#fff; border:none; border-radius:4px; padding:6px 16px; margin-top:8px; cursor:pointer;">Save</button>
+                <button type="button" id="cancel-edit-btn" style="background:#eee; color:#2563eb; border:none; border-radius:4px; padding:6px 16px; margin-top:8px; margin-left:8px; cursor:pointer;">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="order-success-modal" id="order-success-modal">
+        <div class="order-success-content">
+            <div class="success-icon">
+                <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="35" cy="35" r="35" fill="#22c55e"/>
+                    <path d="M20 36L31 47L50 28" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="success-title">Order Placed!</div>
+            <div class="token-label">Your Token Number:</div>
+            <div class="token-number">S-24</div>
+            <button class="close-success-btn" id="close-success-btn">Close</button>
+        </div>
+    </div>
+    <!-- Full Menu Modal -->
+    <div class="modal-overlay" id="full-menu-modal-overlay"></div>
+    <div class="booking-modal" id="full-menu-modal" style="display:none;">
+      <div class="modal-content full-menu-modal-content">
+        <button class="close-modal" id="close-full-menu-modal">&times;</button>
+        <h2 style="margin-bottom: 1rem;">Weekly Menu</h2>
+        <div id="full-menu-table"></div>
+      </div>
+    </div>
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const images = [
+    './images/food1.jpg',
+    './images/food2.jpg'
+];
+let currentIndex = 0;
+const imgElement = document.querySelector('.food-img');
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    imgElement.src = images[currentIndex];
+}, 5000);
+
+const hamburger = document.getElementById('hamburger-menu');
+const navLinks = document.getElementById('nav-links');
+const menuOverlay = document.getElementById('menu-overlay');
+function handleResize() {
+    if (window.innerWidth <= 600) {
+        hamburger && (hamburger.style.display = 'flex');
+        navLinks && navLinks.classList.remove('open');
+        menuOverlay && menuOverlay.classList.remove('active');
+    } else {
+        hamburger && (hamburger.style.display = 'none');
+        navLinks && navLinks.classList.remove('open');
+        menuOverlay && menuOverlay.classList.remove('active');
+    }
+}
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        navLinks && navLinks.classList.toggle('open');
+        menuOverlay && menuOverlay.classList.toggle('active');
+    });
+}
+if (menuOverlay) {
+    menuOverlay.addEventListener('click', () => {
+        navLinks && navLinks.classList.remove('open');
+        menuOverlay.classList.remove('active');
+    });
+}
+window.addEventListener('resize', handleResize);
+document.addEventListener('DOMContentLoaded', handleResize);
+
+const bookNowBtn = document.getElementById('book-now-btn');
+const bookingModalOverlay = document.getElementById('modal-overlay');
+const bookingModal = document.getElementById('booking-modal');
+const closeModalBtn = document.getElementById('close-modal');
+
+if (bookNowBtn) {
+    bookNowBtn.addEventListener('click', () => {
+        bookingModalOverlay && bookingModalOverlay.classList.add('active');
+        bookingModal && bookingModal.classList.add('active');
+        document.body.classList.add('modal-open');
+    });
+}
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+if (bookingModalOverlay) bookingModalOverlay.addEventListener('click', closeModal);
+function closeModal() {
+    bookingModalOverlay && bookingModalOverlay.classList.remove('active');
+    bookingModal && bookingModal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+}
+
+const bookingForm = document.querySelector('.booking-form');
+if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        closeModal();
+        // Show order placed modal
+        const orderSuccessModal = document.getElementById('order-success-modal');
+        if (orderSuccessModal) {
+            orderSuccessModal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+    });
+}
+const closeSuccessBtn = document.getElementById('close-success-btn');
+if (closeSuccessBtn) {
+    closeSuccessBtn.addEventListener('click', function() {
+        const orderSuccessModal = document.getElementById('order-success-modal');
+        if (orderSuccessModal) {
+            orderSuccessModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+    });
+}
+// Weekly menu data (from Excel)
+const weeklyMenu = [
+    {
+        day: 'Monday',
+        normal: { meal: 'Rice, Dal, Sabzi', price: 30 },
+        special: { meal: 'Paneer Curry Thali', price: 50 },
+        item: { name: 'Samosa (2 pcs)', price: 15 }
+    },
+    {
+        day: 'Tuesday',
+        normal: { meal: 'Roti, Chana, Rice', price: 30 },
+        special: { meal: 'Chicken Curry Set', price: 50 },
+        item: { name: 'Veg Roll', price: 25 }
+    },
+    {
+        day: 'Wednesday',
+        normal: { meal: 'Rice, Dal, Aloo', price: 30 },
+        special: { meal: 'Fish Curry Thali', price: 50 },
+        item: { name: 'Rasgulla (2 pcs)', price: 20 }
+    },
+    {
+        day: 'Thursday',
+        normal: { meal: 'Pulao, Raita, Dal', price: 30 },
+        special: { meal: 'Egg Curry Meal', price: 50 },
+        item: { name: 'Bread Pakora', price: 15 }
+    },
+    {
+        day: 'Friday',
+        normal: { meal: 'Roti, Sabzi, Dal', price: 30 },
+        special: { meal: 'Paneer Butter Set', price: 50 },
+        item: { name: 'Gulab Jamun (2)', price: 20 }
+    },
+    {
+        day: 'Saturday',
+        normal: { meal: 'Rice, Chole, Salad', price: 30 },
+        special: { meal: 'Mutton Curry Thali', price: 50 },
+        item: { name: 'Kachori (2 pcs)', price: 20 }
+    },
+    {
+        day: 'Sunday',
+        normal: { meal: 'Khichdi, Chutney', price: 30 },
+        special: { meal: 'Veg Biryani Meal', price: 50 },
+        item: { name: 'Dahi Vada', price: 25 }
+    }
+];
+// Menu modal logic
+const menuModalOverlay = document.getElementById('menu-modal-overlay');
+const menuModal = document.getElementById('menu-modal');
+const closeMenuModalBtn = document.getElementById('close-menu-modal');
+const menuModalTitle = document.getElementById('menu-modal-title');
+const menuModalBody = document.getElementById('menu-modal-body');
+
+function getTodayMenu() {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const today = new Date();
+    const dayName = days[today.getDay()];
+    const dateStr = today.toLocaleDateString();
+    const menu = weeklyMenu.find(m => m.day === dayName) || weeklyMenu[0];
+    return { dayName, dateStr, menu };
+}
+
+function showMenuModal(type) {
+    const { dayName, dateStr, menu } = getTodayMenu();
+    let content = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 id="menu-modal-title" style="margin: 0;">${type === 'normal' ? 'Normal Meal' : type === 'special' ? 'Special Meal' : 'Special Item'}</h2>
+            <button id="edit-menu-btn" class="edit-btn" style="background: none; border: 1px solid #2563eb; padding: 4px 12px; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 4px; color: #2563eb; font-size: 14px;">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.7 3.3a1 1 0 0 1 1.4 1.4l-9.4 9.4-2 0.6 0.6-2 9.4-9.4z"/>
+                    <path d="M16 7v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7"/>
+                </svg>
+                Edit
+            </button>
+        </div>
+        <div class="menu-details" style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+            <div style="margin-bottom: 0.5rem;"><strong>Day:</strong> ${dayName}</div>
+            <div style="margin-bottom: 1rem;"><strong>Date:</strong> ${dateStr}</div>
+            ${type === 'normal' ? 
+                `<div style="margin-bottom: 0.5rem;"><strong>Meal:</strong> ${menu.normal.meal}</div>
+                 <div><strong>Price:</strong> ₹${menu.normal.price}</div>` :
+             type === 'special' ? 
+                `<div style="margin-bottom: 0.5rem;"><strong>Meal:</strong> ${menu.special.meal}</div>
+                 <div><strong>Price:</strong> ₹${menu.special.price}</div>` :
+                `<div style="margin-bottom: 0.5rem;"><strong>Item:</strong> ${menu.item.name}</div>
+                 <div><strong>Price:</strong> ₹${menu.item.price}</div>`
+            }
+        </div>
+    `;
+
+    menuModalBody.innerHTML = content;
+    
+    // Add edit form
+    const editForm = `
+        <form id="edit-menu-form" style="display:none; margin-top:1rem;">
+            <div id="edit-fields" style="background: #f8fafc; padding: 1rem; border-radius: 8px; display: flex; flex-direction: column; gap: 1rem;">
+                ${type === 'normal' || type === 'special' ? `
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label style="font-weight: 500;">Meal:</label>
+                        <input type="text" name="meal" value="${type === 'normal' ? menu.normal.meal : menu.special.meal}" required 
+                               style="padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label style="font-weight: 500;">Price:</label>
+                        <input type="number" name="price" value="${type === 'normal' ? menu.normal.price : menu.special.price}" required
+                               style="padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px;">
+                    </div>
+                ` : `
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label style="font-weight: 500;">Item:</label>
+                        <input type="text" name="name" value="${menu.item.name}" required
+                               style="padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label style="font-weight: 500;">Price:</label>
+                        <input type="number" name="price" value="${menu.item.price}" required
+                               style="padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px;">
+                    </div>
+                `}
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <button type="submit" style="background: #2563eb; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; cursor: pointer;">Save Changes</button>
+                <button type="button" id="cancel-edit-btn" style="background: #f1f5f9; border: none; border-radius: 4px; padding: 8px 16px; cursor: pointer;">Cancel</button>
+            </div>
+        </form>
+    `;
+    
+    menuModalBody.insertAdjacentHTML('beforeend', editForm);
+    
+    // Setup edit button click handler
+    const editBtn = document.getElementById('edit-menu-btn');
+    const editMenuForm = document.getElementById('edit-menu-form');
+    const menuDetails = document.querySelector('.menu-details');
+    const cancelEditBtn = document.getElementById('cancel-edit-btn');
+    
+    if (editBtn) {
+        editBtn.addEventListener('click', () => {
+            menuDetails.style.display = 'none';
+            editBtn.style.display = 'none';
+            editMenuForm.style.display = 'block';
+        });
+    }
+    
+    if (cancelEditBtn) {
+        cancelEditBtn.addEventListener('click', () => {
+            menuDetails.style.display = 'block';
+            editBtn.style.display = 'flex';
+            editMenuForm.style.display = 'none';
+        });
+    }
+    
+    if (editMenuForm) {
+        editMenuForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(editMenuForm);
+            
+            // Update the menu data
+            if (type === 'normal') {
+                menu.normal.meal = formData.get('meal');
+                menu.normal.price = Number(formData.get('price'));
+            } else if (type === 'special') {
+                menu.special.meal = formData.get('meal');
+                menu.special.price = Number(formData.get('price'));
+            } else {
+                menu.item.name = formData.get('name');
+                menu.item.price = Number(formData.get('price'));
+            }
+            
+            // Update weeklyMenu array
+            const dayIndex = weeklyMenu.findIndex(m => m.day === dayName);
+            if (dayIndex !== -1) {
+                weeklyMenu[dayIndex] = menu;
+            }
+            
+            // Download updated menu.json
+            const blob = new Blob([JSON.stringify(weeklyMenu, null, 2)], {type: 'application/json'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'menu.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            // Reset form and show updated details
+            menuDetails.style.display = 'block';
+            editBtn.style.display = 'flex';
+            editMenuForm.style.display = 'none';
+            showMenuModal(type); // Refresh the modal content
+        });
+    }
+
+    menuModalOverlay && menuModalOverlay.classList.add('active');
+    menuModal && menuModal.classList.add('active');
+    document.body.classList.add('modal-open');
+}
+
+// Show modal when nav "Menu" is clicked
+const navMenuLink = document.querySelector('nav a[href="#"]');
+if (navMenuLink) {
+    navMenuLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('./menu.json')
+            .then(res => res.json())
+            .then(data => {
+                fullMenuTable.innerHTML = `<div class='full-menu-table-wrapper'>${generateMenuTable(data)}</div>`;
+                fullMenuModalOverlay.classList.add('active');
+                fullMenuModal.classList.add('active');
+                fullMenuModal.style.display = 'block';
+                document.body.classList.add('modal-open');
+            });
+    });
+}
+
+function generateMenuTable(menuData) {
+    let html = `<table class="full-menu-table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Normal Meal</th>
+                <th>Normal Price</th>
+                <th>Special Meal</th>
+                <th>Special Price</th>
+                <th>Special Item</th>
+                <th>Item Price</th>
+            </tr>
+        </thead>
+        <tbody>`;
+    menuData.forEach(row => {
+        html += `<tr>
+            <td>${row.day}</td>
+            <td>${row.normal.meal}</td>
+            <td>₹${row.normal.price}</td>
+            <td>${row.special.meal}</td>
+            <td>₹${row.special.price}</td>
+            <td>${row.item.name}</td>
+            <td>₹${row.item.price}</td>
+        </tr>`;
+    });
+    html += `</tbody></table>`;
+    return html;
+}
+
+// Close modal logic
+if (closeFullMenuModalBtn) closeFullMenuModalBtn.addEventListener('click', closeFullMenuModal);
+if (fullMenuModalOverlay) fullMenuModalOverlay.addEventListener('click', closeFullMenuModal);
+function closeFullMenuModal() {
+    fullMenuModalOverlay.classList.remove('active');
+    fullMenuModal.classList.remove('active');
+    fullMenuModal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+}
+
+// Add after menuModalBody and menuModalTitle definitions
+const editMenuBtn = document.getElementById('edit-menu-btn');
+const editMenuForm = document.getElementById('edit-menu-form');
+const editFields = document.getElementById('edit-fields');
+const cancelEditBtn = document.getElementById('cancel-edit-btn');
+let currentEditType = null;
+let currentDayName = null;
+
+function showEditForm(type, menu, dayName) {
+    editFields.innerHTML = '';
+    if (type === 'normal') {
+        editFields.innerHTML = `
+            <label>Meal: <input type="text" name="meal" value="${menu.normal.meal}" required></label>
+            <label>Price: <input type="number" name="price" value="${menu.normal.price}" required></label>
+        `;
+    } else if (type === 'special') {
+        editFields.innerHTML = `
+            <label>Meal: <input type="text" name="meal" value="${menu.special.meal}" required></label>
+            <label>Price: <input type="number" name="price" value="${menu.special.price}" required></label>
+        `;
+    } else if (type === 'item') {
+        editFields.innerHTML = `
+            <label>Item: <input type="text" name="name" value="${menu.item.name}" required></label>
+            <label>Price: <input type="number" name="price" value="${menu.item.price}" required></label>
+        `;
+    }
+    editMenuForm.style.display = 'flex';
+    menuModalBody.style.display = 'none';
+}
+
+if (editMenuBtn) {
+    editMenuBtn.addEventListener('click', function() {
+        const { dayName, menu } = getTodayMenu();
+        showEditForm(currentEditType, menu, dayName);
+    });
+}
+if (cancelEditBtn) {
+    cancelEditBtn.addEventListener('click', function() {
+        editMenuForm.style.display = 'none';
+        menuModalBody.style.display = 'block';
+    });
+}
+if (editMenuForm) {
+    editMenuForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const { menu } = getTodayMenu();
+        const formData = new FormData(editMenuForm);
+        if (currentEditType === 'normal') {
+            menu.normal.meal = formData.get('meal');
+            menu.normal.price = Number(formData.get('price'));
+        } else if (currentEditType === 'special') {
+            menu.special.meal = formData.get('meal');
+            menu.special.price = Number(formData.get('price'));
+        } else if (currentEditType === 'item') {
+            menu.item.name = formData.get('name');
+            menu.item.price = Number(formData.get('price'));
+        }
+        // Update menu.json by downloading new file
+        downloadMenuJson();
+        editMenuForm.style.display = 'none';
+        menuModalBody.style.display = 'block';
+        showMenuModal(currentEditType); // Refresh modal
+    });
+}
+function downloadMenuJson() {
+    // This will only update the file for the user, not on the server
+    const blob = new Blob([JSON.stringify(weeklyMenu, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'menu.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+// Patch showMenuModal to set currentEditType and currentDayName
+const originalShowMenuModal = showMenuModal;
+showMenuModal = function(type) {
+    currentEditType = type;
+    const { dayName } = getTodayMenu();
+    currentDayName = dayName;
+    originalShowMenuModal(type);
+};
+});
+</script>
+</html> 

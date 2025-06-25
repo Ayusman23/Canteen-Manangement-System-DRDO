@@ -1,0 +1,8 @@
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\CanteenApi.csproj.AssemblyReference.cache
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\CanteenApi.GeneratedMSBuildEditorConfig.editorconfig
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\CanteenApi.AssemblyInfoInputs.cache
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\CanteenApi.AssemblyInfo.cs
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\CanteenApi.csproj.CoreCompileInputs.cache
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\CanteenApi.MvcApplicationPartsAssemblyInfo.cs
+D:\Canteen management\CanteenApi\obj\Debug\net9.0\CanteenApi.MvcApplicationPartsAssemblyInfo.cache

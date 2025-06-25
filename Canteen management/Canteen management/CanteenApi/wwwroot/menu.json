@@ -1,0 +1,44 @@
+[
+  {
+    "day": "Monday",
+    "normal": { "meal": "Rice, Dal, Sabzi", "price": 30 },
+    "special": { "meal": "Paneer Curry Thali", "price": 50 },
+    "item": { "name": "Samosa (2 pcs)", "price": 15 }
+  },
+  {
+    "day": "Tuesday",
+    "normal": { "meal": "Roti, Chana, Rice", "price": 30 },
+    "special": { "meal": "Chicken Curry Set", "price": 50 },
+    "item": { "name": "Veg Roll", "price": 25 }
+  },
+  {
+    "day": "Wednesday",
+    "normal": { "meal": "Rice, Dal, Aloo", "price": 30 },
+    "special": { "meal": "Fish Curry Thali", "price": 50 },
+    "item": { "name": "Rasgulla (2 pcs)", "price": 20 }
+  },
+  {
+    "day": "Thursday",
+    "normal": { "meal": "Pulao, Raita, Dal", "price": 30 },
+    "special": { "meal": "Egg Curry Meal", "price": 50 },
+    "item": { "name": "Bread Pakora", "price": 15 }
+  },
+  {
+    "day": "Friday",
+    "normal": { "meal": "Roti, Sabzi, Dal", "price": 30 },
+    "special": { "meal": "Paneer Butter Set", "price": 50 },
+    "item": { "name": "Gulab Jamun (2)", "price": 20 }
+  },
+  {
+    "day": "Saturday",
+    "normal": { "meal": "Rice, Chole, Salad", "price": 30 },
+    "special": { "meal": "Mutton Curry Thali", "price": 50 },
+    "item": { "name": "Kachori (2 pcs)", "price": 20 }
+  },
+  {
+    "day": "Sunday",
+    "normal": { "meal": "Khichdi, Chutney", "price": 30 },
+    "special": { "meal": "Veg Biryani Meal", "price": 50 },
+    "item": { "name": "Dahi Vada", "price": 25 }
+  }
+] 
