@@ -46,3 +46,51 @@ This project was built as part of an academic/organizational use-case inspired b
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Ayusman23/Canteen-Manangement-System-DRDO.git
+2.  Open the project
+
+Open the solution file in Visual Studio
+
+3.  Database Setup
+
+Import the provided SQL file into MySQL
+
+Update database credentials in the configuration file
+
+  Run the Application
+
+Build and run the project from Visual Studio
+
+🎯 Use Case
+
+This system is suitable for:
+
+College canteens
+
+Office cafeterias
+
+Government/defense organization canteens
+
+Small to medium food service management
+
+🚀 Future Enhancements
+
+Online payment gateway integration
+
+Mobile application support
+
+Role-based access control
+
+Advanced analytics dashboard
+
+QR-based ordering system
+
+👨‍💻 Author
+
+Ayusman Samantaray
+B.Tech Computer Science & Engineering
+GitHub: Ayusman23
+
+📄 License
+
+This project is developed for educational purposes.
+Feel free to use and modify it with proper attribution.
