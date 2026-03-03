@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace CanteenApi.Models
 {
     public class MenuDay
@@ -10,7 +12,8 @@ namespace CanteenApi.Models
 
     public class Meal
     {
-        public string Meal { get; set; }
+        [JsonPropertyName("meal")]
+        public string MealName { get; set; }
         public int Price { get; set; }
     }
 
@@ -19,4 +22,4 @@ namespace CanteenApi.Models
         public string Name { get; set; }
         public int Price { get; set; }
     }
-} 
+}

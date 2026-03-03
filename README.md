@@ -1,96 +1,53 @@
-# Canteen-Manangement-System-DRDO
+# DRDO Canteen Management System
 
-# 🍽️ Canteen Management System – DRDO
+A professional full-stack application for managing canteen services at DRDO, featuring a modern React frontend and a robust .NET Core backend.
 
-A full-stack **Canteen Management System** developed to automate and streamline canteen operations such as order management, billing, and inventory tracking.  
-This project was built as part of an academic/organizational use-case inspired by **DRDO canteen workflow requirements**.
+## 🚀 Features
+- **Modern UI**: Clean, responsive design built with React, Vite, and Framer Motion.
+- **Weekly Menu**: Dynamic fetching of the weekly meal plan.
+- **Booking System**: Secure meal pre-booking with unique token generation.
+- **Database Persistence**: SQLite integration for storing and managing bookings.
+- **Professional Aesthetics**: Tailored for DRDO's professional environment.
+
+## 🛠️ Technology Stack
+- **Frontend**: React, Vite, Lucide Icons, Framer Motion, Axios
+- **Backend**: ASP.NET Core 9.0 Web API, Entity Framework Core (SQLite)
+
+## 🏃‍♂️ How to Run
+
+### Prerequisites
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [Node.js & npm](https://nodejs.org/)
+
+### Simplified Launch
+You can run the entire application (both frontend and backend) simultaneously using the provided PowerShell script:
+
+```powershell
+./run.ps1
+```
+
+### Manual Launch
+
+#### 1. Start the Backend
+```bash
+cd "Canteen management/Canteen management/CanteenApi"
+dotnet run
+```
+The backend will be available at `http://localhost:5170`.
+
+#### 2. Start the Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+The frontend will be available at `http://localhost:5173`.
+
+## 📁 Project Structure
+- `frontend/`: React application source code.
+- `Canteen management/.../CanteenApi/`: .NET Core API source code.
+- `Canteen management/.../CanteenApi/wwwroot/menu.json`: Source of Truth for the weekly menu.
+- `run.ps1`: Automation script for simultaneous execution.
 
 ---
-
-## 📌 Features
-
-- 🔐 User authentication (Admin / Staff)
-- 🧾 Digital order management
-- 💰 Automated billing and invoice generation
-- 📦 Inventory management and stock tracking
-- 📊 Daily sales and order reports
-- ⚡ Faster and error-free canteen operations
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend:** HTML, CSS, JavaScript  
-- **Backend:** ASP.NET (.NET Framework / .NET Core)  
-- **Database:** MySQL  
-- **Tools:** Visual Studio, MySQL Workbench
-
----
-
-## 🏗️ System Modules
-
-- **Admin Panel**
-  - Manage menu items
-  - Monitor inventory
-  - View sales reports
-- **Canteen Staff**
-  - Process orders
-  - Generate bills
-- **Database Layer**
-  - Stores user, order, and inventory data securely
-
----
-
-## ⚙️ Installation & Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Ayusman23/Canteen-Manangement-System-DRDO.git
-2.  Open the project
-
-Open the solution file in Visual Studio
-
-3.  Database Setup
-
-Import the provided SQL file into MySQL
-
-Update database credentials in the configuration file
-
-  Run the Application
-
-Build and run the project from Visual Studio
-
-🎯 Use Case
-
-This system is suitable for:
-
-College canteens
-
-Office cafeterias
-
-Government/defense organization canteens
-
-Small to medium food service management
-
-🚀 Future Enhancements
-
-Online payment gateway integration
-
-Mobile application support
-
-Role-based access control
-
-Advanced analytics dashboard
-
-QR-based ordering system
-
-👨‍💻 Author
-
-Ayusman Samantaray
-B.Tech Computer Science & Engineering
-GitHub: Ayusman23
-
-📄 License
-
-This project is developed for educational purposes.
-Feel free to use and modify it with proper attribution.
+© 2025 DRDO Canteen Management Project. Optimized for excellence.
