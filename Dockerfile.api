@@ -7,7 +7,7 @@ COPY CanteenManagement.sln .
 COPY src/Canteen.Domain/Canteen.Domain.csproj src/Canteen.Domain/
 COPY src/Canteen.Application/Canteen.Application.csproj src/Canteen.Application/
 COPY src/Canteen.Infrastructure/Canteen.Infrastructure.csproj src/Canteen.Infrastructure/
-COPY "Canteen management/Canteen management/CanteenApi/CanteenApi.csproj" "Canteen management/Canteen management/CanteenApi/"
+COPY ["Canteen management/Canteen management/CanteenApi/CanteenApi.csproj", "Canteen management/Canteen management/CanteenApi/"]
 COPY tests/Canteen.UnitTests/Canteen.UnitTests.csproj tests/Canteen.UnitTests/
 
 RUN dotnet restore CanteenManagement.sln
