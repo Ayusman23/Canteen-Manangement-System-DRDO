@@ -1,0 +1,44 @@
+# Multi-Stage Dockerfile for DRDO Canteen Management System - ASP.NET Core 9.0 Web API
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+WORKDIR /source
+
+# Copy solution and project files for caching restore layer
+COPY CanteenManagement.sln .
+COPY src/Canteen.Domain/Canteen.Domain.csproj src/Canteen.Domain/
+COPY src/Canteen.Application/Canteen.Application.csproj src/Canteen.Application/
+COPY src/Canteen.Infrastructure/Canteen.Infrastructure.csproj src/Canteen.Infrastructure/
+COPY "Canteen management/Canteen management/CanteenApi/CanteenApi.csproj" "Canteen management/Canteen management/CanteenApi/"
+COPY tests/Canteen.UnitTests/Canteen.UnitTests.csproj tests/Canteen.UnitTests/
+
+RUN dotnet restore CanteenManagement.sln
+
+# Copy source code and build
+COPY . .
+RUN dotnet publish "Canteen management/Canteen management/CanteenApi/CanteenApi.csproj" -c Release -o /app/publish --no-restore
+
+# Final lightweight Alpine runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
+WORKDIR /app
+
+# Add curl for container healthcheck
+RUN apk --no-cache add curl icu-libs
+
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+ENV ASPNETCORE_URLS=http://+:5170
+
+COPY --from=build /app/publish .
+
+# Run as non-root user for defense security compliance
+RUN addgroup -g 1000 drdogroup && \
+    adduser -u 1000 -G drdogroup -s /bin/sh -D drdouser && \
+    chown -R drdouser:drdogroup /app
+
+ENV PORT=5170
+
+USER drdouser
+EXPOSE 5170 5000
+
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:${PORT:-5170}/health/live || exit 1
+
+ENTRYPOINT ["dotnet", "CanteenApi.dll"]

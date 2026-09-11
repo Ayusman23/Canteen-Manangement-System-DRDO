@@ -1,0 +1,31 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
+dist/
+**/dist/
+node_modules/
+**/node_modules/
+
+# Visual Studio & IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Local Databases & Logs
+*.db
+*.db-shm
+*.db-wal
+logs/
+*.log
+
+# Environment & Local secrets
+.env
+.env.local
+.env.*.local
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,88 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: drdo-canteen-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: drdo_canteen
+      POSTGRES_USER: drdo_admin
+      POSTGRES_PASSWORD: DRDO_Secured_Postgres_2026!
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U drdo_admin -d drdo_canteen"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - drdo-network
+
+  redis:
+    image: redis:alpine
+    container_name: drdo-canteen-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - drdo-network
+
+  canteen-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: drdo-canteen-api
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - DatabaseProvider=PostgreSQL
+      - ConnectionStrings__PostgreSqlConnection=Host=postgres;Port=5432;Database=drdo_canteen;Username=drdo_admin;Password=DRDO_Secured_Postgres_2026!;
+      - Jwt__Secret=DRDO_Canteen_Classified_Ultra_Secure_Key_2026_Enterprise_Production_Standard!
+      - Jwt__Issuer=DRDO-Canteen-Security
+      - Jwt__Audience=DRDO-Canteen-Clients
+      - Jwt__ExpiryMinutes=30
+    ports:
+      - "5170:5170"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5170/health/live || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - drdo-network
+
+  canteen-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    container_name: drdo-canteen-ui
+    restart: always
+    depends_on:
+      - canteen-api
+    ports:
+      - "5173:80"
+    networks:
+      - drdo-network
+
+volumes:
+  pgdata:
+    driver: local
+  redisdata:
+    driver: local
+
+networks:
+  drdo-network:
+    driver: bridge
